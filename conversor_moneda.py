@@ -1,29 +1,38 @@
 
-# 1. Definicion de la Funcion (La Licuadora)
-# 'def' define la funcion. Los nombres entre parentesis son los ingredientes (parametros).
+# 1. Definicion de la Funcion (La Receta)
 def cordobas_a_usd(costo, tasa):
     # Calcula el costo
     costo_usd = costo / tasa
-    # 'return' devuelve el resultado final de la funcion
+    # Devuelve el resultado
     return costo_usd
 
-# ----------------------------------------------------
+# 2. Variables de Control
+TASA_CAMBIO = 36.6
 
-# 2. Uso de la Funcion (Haciendo el Smoothie)
+# 3. Abrir el archivo de datos y procesar linea por linea
+print("--- CONVERSOR DE MONEDA AUTOMATIZADO ---")
 
-# Variables
-costo_hp_omen = 58776  # Precio de la HP Omen
-tasa_cambio_actual = 36.6
+# 'with open' asegura que el archivo se cierre automaticamente
+with open('precios.txt', 'r') as archivo:
+    
+    # 'for linea in archivo' lee cada linea del archivo precios.txt
+    for linea in archivo:
+        
+        # Eliminar espacios y saltos de linea
+        linea = linea.strip()
+        
+        # Separar el nombre del producto y su costo usando ":"
+        nombre, costo_str = linea.split(':')
+        
+        # Convertir el costo a numero entero para poder calcular
+        costo_cordobas = int(costo_str)
+        
+        # Usar la funcion (la receta) para convertir a USD
+        costo_convertido = cordobas_a_usd(costo_cordobas, TASA_CAMBIO)
+        
+        # Mostrar el resultado
+        print(f"Producto: {nombre.strip()}")
+        print(f"  C$ {costo_cordobas:,.2f} -> USD ${costo_convertido:.2f}")
 
-# Llamar a la funcion y guardar el resultado
-costo_convertido = cordobas_a_usd(costo_hp_omen, tasa_cambio_actual)
+print("------------------------------------------")
 
-# 3. Mostrar el Resultado
-print(f"El costo de la HP Omen (C$ {costo_hp_omen}) es:")
-# Usamos el resultado que la funcion nos devolvio
-print(f"Aproximadamente USD ${costo_convertido:.2f}") 
-
-# Reutilizando la funcion: Cuanto es C$ 10,000?
-costo_ejemplo = cordobas_a_usd(10000, 36.6)
-print("-" * 20)
-print(f"C$ 10,000.00 son aproximadamente USD ${costo_ejemplo:.2f}") 
