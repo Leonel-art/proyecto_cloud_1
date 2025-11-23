@@ -1,25 +1,29 @@
-# Variables Mi primer codigo (jeje)
-costo_cordobas = 58776  #
-tasa_cambio = 36.6  # Tasa de cambio promedio, si no la sabes, verifica en Google.
 
-# Calculo
-costo_usd = costo_cordobas / tasa_cambio
+# 1. Definicion de la Funcion (La Licuadora)
+# 'def' define la funcion. Los nombres entre parentesis son los ingredientes (parametros).
+def cordobas_a_usd(costo, tasa):
+    # Calcula el costo
+    costo_usd = costo / tasa
+    # 'return' devuelve el resultado final de la funcion
+    return costo_usd
 
-# Mostrar el resultado
-print(f"El costo de la HP Omen de C$ {costo_cordobas} es:")
-print(f"Aproximadamente USD ${costo_usd:.2f}")
+# ----------------------------------------------------
 
-# Ahora el script debe ser capaz de tomar esa cifra y almacenarla en una variable o archivo.
+# 2. Uso de la Funcion (Haciendo el Smoothie)
 
 # Variables
-costo_cordobas = 58776  #
-tasa_cambio = 36.6  # Tasa de cambio promedio, si no la sabes, verifica en Google.
+costo_hp_omen = 58776  # Precio de la HP Omen
+tasa_cambio_actual = 36.6
 
-# Calculo
-costo_usd = costo_cordobas / tasa_cambio
+# Llamar a la funcion y guardar el resultado
+costo_convertido = cordobas_a_usd(costo_hp_omen, tasa_cambio_actual)
 
-# Mostrar el resultado
-print(f"El costo de la HP Omen de C$ {costo_cordobas} es:")
-print(f"Aproximadamente USD ${costo_usd:.2f}")
+# 3. Mostrar el Resultado
+print(f"El costo de la HP Omen (C$ {costo_hp_omen}) es:")
+# Usamos el resultado que la funcion nos devolvio
+print(f"Aproximadamente USD ${costo_convertido:.2f}") 
 
-# Ahora el script debe ser capaz de tomar esa cifra y almacenarla en una variable o archivo.
+# Reutilizando la funcion: Cuanto es C$ 10,000?
+costo_ejemplo = cordobas_a_usd(10000, 36.6)
+print("-" * 20)
+print(f"C$ 10,000.00 son aproximadamente USD ${costo_ejemplo:.2f}") 
